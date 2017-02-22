@@ -35,7 +35,7 @@ export default class Iphone extends Component {
 	// a call to fetch weather data via wunderground
 	fetchWeatherData = () => {
 		// API URL with a structure of : ttp://api.wunderground.com/api/key/feature/q/country-code/city.json
-		var url = "http://api.wunderground.com/api/e844c4334a0857a1/conditions/q/UK/London.json";
+		var url = "http://api.wunderground.com/api/[PUT YOUR API KEY HERE]/conditions/q/UK/London.json";
 		$.ajax({
 			url: url,
 			dataType: "jsonp",
@@ -77,6 +77,22 @@ export default class Iphone extends Component {
 		const phraseStyles = this.state.greet1 ? `${style.phrase1} ${style.filled}` : style.phrase1;
 		
 		// display all weather data
+
+		// -------------
+		// A note on generated class names
+		// -------------
+		// Classes are automatically generated and when you view them in the inspector they look a mess
+		// (long alpha-numeric strings). If you want to add a readable class to an element, take a look
+		// at the <div> for button2:
+
+		// <div class={`${style_button2.button2_container} some-class`} >
+		// NB: Those are backticks, not single quotes!!
+
+		// This syntax allows us to include the styles in the .less file, and also add a class name
+		// of our choosing so it's easier to see what's going on in a browser inspector. Great!
+
+		// Big up to Filip for flagging this up - it's a top tip!
+
 		return (
 			<div class={ style.container }>
 				<div class={ style.header }>
@@ -96,7 +112,7 @@ export default class Iphone extends Component {
 				</div>
 
 				{ this.state.displayButton2 ?
-					<div class={style_button2.button2_container}> 
+					<div class={`${style_button2.button2_container} some-class`}> 
 						 <Button2  clickFunction={ this.fetchLocalJsonData }/ > 
 					</div>
 				: null }
